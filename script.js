@@ -25,16 +25,26 @@ images.forEach((img) => {
 
   img.addEventListener("drop", (e) => {
     e.preventDefault();
-    if (draggedItem && draggedItem !== e.target) {
-      // Swap IDs — this swaps background images (since they come from CSS)
-      const tempId = draggedItem.id;
-      draggedItem.id = e.target.id;
-      e.target.id = tempId;
 
-      // Swap text too
-      const tempText = draggedItem.textContent;
-      draggedItem.textContent = e.target.textContent;
-      e.target.textContent = tempText;
+    if (draggedItem && draggedItem !== e.target) {
+      // Swap background images if using CSS backgrounds
+      const tempBg = e.target.style.backgroundImage;
+      e.target.style.backgroundImage = draggedItem.style.backgroundImage;
+      draggedItem.style.backgroundImage = tempBg;
+
+      // If <img> elements are inside, swap their 'src' attributes
+      const dragImg = draggedItem.querySelector("img");
+      const dropImg = e.target.querySelector("img");
+      if (dragImg && dropImg) {
+        const tempSrc = dragImg.src;
+        dragImg.src = dropImg.src;
+        dropImg.src = tempSrc;
+      }
+
+      // Swap text content too
+      const tempText = e.target.textContent;
+      e.target.textContent = draggedItem.textContent;
+      draggedItem.textContent = tempText;
     }
   });
 });
