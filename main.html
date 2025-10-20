@@ -1,3 +1,16 @@
+<!-- Better Instagram
+Given a grid of 6 pictures. Allow repositioning of the pics with mouse drag as demonstrated in the gif given below.
+This is a feature that even Instagram doesn't support as of now!
+
+Acceptance Criteria:
+
+The user has to create an interface with 6 divs with id = "div1", id = "div2", and so on. Each div has already been given a specific background image in the style.css file.
+
+All the 6 divs should be draggable & droppable so we can rearrange the images in any pattern.
+
+When we are dragging one div to position of another, their content (images) should be swapped.
+
+alt text -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,42 +21,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
     <style>
-        #div1 {
+        #drag1 {
   background-image: url("https://picsum.photos/id/237/200/300");
   height: 300px;
   width: 200px;
   margin: 20px;
 }
 
-#div2 {
+#drag2 {
   background-image: url("https://picsum.photos/seed/picsum/200/300");
   height: 300px;
   width: 200px;
   margin: 20px;
 }
 
-#div3 {
+#drag3 {
   background-image: url("https://picsum.photos/200/300?grayscale");
   height: 300px;
   width: 200px;
   margin: 20px;
 }
 
-#div4 {
+#drag4 {
   background-image: url("https://picsum.photos/200/300/");
   height: 300px;
   width: 200px;
   margin: 20px;
 }
 
-#div5 {
+#drag5 {
   background-image: url("https://picsum.photos/200/300.jpg");
   height: 300px;
   width: 200px;
   margin: 20px;
 }
 
-#div6 {
+#drag6 {
   background-image: url("https://picsum.photos/id/102/200/300");
   height: 300px;
   width: 200px;
@@ -78,12 +91,12 @@ button {
   <body>
     <h1 style="text-align: center">Arrange Images by drag and drop</h1>
     <div class="flex" id="parent">
-      <div id = "div1" draggable="true" class="image" >Image 1</div>
-      <div id = "div2" draggable="true" class="image" >Image 2</div>
-      <div id = "div3" draggable="true" class="image" >Image 3</div>
-      <div id = "div4" draggable="true" class="image" >Image 4</div>
-      <div id = "div5" draggable="true" class="image" >Image 5</div>
-      <div id = "div6" draggable="true" class="image" >Image 6</div>
+      <div id = "drag1" draggable="true" class="image" >Image 1</div>
+      <div id = "drag2" draggable="true" class="image" >Image 2</div>
+      <div id = "drag3" draggable="true" class="image" >Image 3</div>
+      <div id = "drag4" draggable="true" class="image" >Image 4</div>
+      <div id = "drag5" draggable="true" class="image" >Image 5</div>
+      <div id = "drag6" draggable="true" class="image" >Image 6</div>
     </div>
   </body>
   <script>
