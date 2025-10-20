@@ -1,125 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script src="script.js " defer></script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
     <title>Better Instagram</title>
-    <style>
-      .image {
-        height: 300px;
-        width: 200px;
-        margin: 20px;
-        background-size: cover;
-        background-position: center;
-        display: flex;
-        justify-content: center;
-        align-items: end;
-        color: white;
-        font-weight: bold;
-        font-size: 18px;
-        text-shadow: 1px 1px 3px black;
-      }
-
-      .flex {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-      }
-
-      .selected {
-        border: 5px solid rgb(0, 195, 255);
-      }
-
-      h1 {
-        text-align: center;
-      }
-    </style>
   </head>
   <body>
-    <h1>Arrange Images by Drag and Drop</h1>
-    <div class="flex" id="parent">
-      <div
-        draggable="true"
-        class="image"
-        style="background-image: url('https://picsum.photos/id/237/200/300')"
-      >
-        Image 1
-      </div>
-      <div
-        draggable="true"
-        class="image"
-        style="background-image: url('https://picsum.photos/seed/picsum/200/300')"
-      >
-        Image 2
-      </div>
-      <div
-        draggable="true"
-        class="image"
-        style="background-image: url('https://picsum.photos/200/300?grayscale')"
-      >
-        Image 3
-      </div>
-      <div
-        draggable="true"
-        class="image"
-        style="background-image: url('https://picsum.photos/200/300/')"
-      >
-        Image 4
-      </div>
-      <div
-        draggable="true"
-        class="image"
-        style="background-image: url('https://picsum.photos/200/300.jpg')"
-      >
-        Image 5
-      </div>
-      <div
-        draggable="true"
-        class="image"
-        style="background-image: url('https://picsum.photos/id/102/200/300')"
-      >
-        Image 6
-      </div>
+    <h1 style="text-align: center">Arrange Images by drag and drop</h1>
+   <div class="flex" id="parent">
+      <div id = "div1" draggable="true" class="image" >Image 1</div>
+      <div id = "div2" draggable="true" class="image" >Image 2</div>
+      <div id = "div3" draggable="true" class="image" >Image 3</div>
+      <div id = "div4" draggable="true" class="image" >Image 4</div>
+      <div id = "div5" draggable="true" class="image" >Image 5</div>
+      <div id = "div6" draggable="true" class="image" >Image 6</div>
     </div>
-
-    <script>
-      const images = document.querySelectorAll(".image");
-      let draggedItem = null;
-
-      // Add drag-and-drop functionality
-      images.forEach((img) => {
-        img.addEventListener("dragstart", (e) => {
-          draggedItem = e.target;
-          e.target.classList.add("selected");
-        });
-
-        img.addEventListener("dragend", (e) => {
-          e.target.classList.remove("selected");
-          draggedItem = null;
-        });
-
-        img.addEventListener("dragover", (e) => {
-          e.preventDefault(); // Allow drop
-        });
-
-        img.addEventListener("drop", (e) => {
-          e.preventDefault();
-
-          if (draggedItem && draggedItem !== e.target) {
-            // Swap background images
-            const tempBg = e.target.style.backgroundImage;
-            e.target.style.backgroundImage = draggedItem.style.backgroundImage;
-            draggedItem.style.backgroundImage = tempBg;
-
-            // Swap text
-            const tempText = e.target.textContent;
-            e.target.textContent = draggedItem.textContent;
-            draggedItem.textContent = tempText;
-          }
-        });
-      });
-    </script>
   </body>
 </html>
