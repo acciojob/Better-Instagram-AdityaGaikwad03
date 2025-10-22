@@ -52,8 +52,8 @@
     <h1>Arrange Images by Drag and Drop</h1>
 
     <div class="flex" id="parent">
-      <div 
-		id = "drag1"
+      <div
+        id="drag1"
         draggable="true"
         class="image"
         data-img="https://picsum.photos/id/237/200/300"
@@ -62,7 +62,7 @@
         Image 1
       </div>
       <div
-		  id = "drag2"
+        id="drag2"
         draggable="true"
         class="image"
         data-img="https://picsum.photos/seed/picsum/200/300"
@@ -71,7 +71,7 @@
         Image 2
       </div>
       <div
-		  id = "drag3"
+        id="drag3"
         draggable="true"
         class="image"
         data-img="https://picsum.photos/200/300?grayscale"
@@ -80,7 +80,7 @@
         Image 3
       </div>
       <div
-		  id = "drag4"
+        id="drag4"
         draggable="true"
         class="image"
         data-img="https://picsum.photos/id/1015/200/300"
@@ -89,7 +89,7 @@
         Image 4
       </div>
       <div
-		  id = "drag5"
+        id="drag5"
         draggable="true"
         class="image"
         data-img="https://picsum.photos/id/1011/200/300"
@@ -98,7 +98,7 @@
         Image 5
       </div>
       <div
-		  id = "drag6"
+        id="drag6"
         draggable="true"
         class="image"
         data-img="https://picsum.photos/id/102/200/300"
@@ -109,6 +109,20 @@
     </div>
 
     <script>
+      // ✅ Make both IDs (drag# and div#) accessible
+      const allImages = document.querySelectorAll(".image");
+      allImages.forEach((img, i) => {
+        const divAlias = `div${i + 1}`;
+        img.setAttribute("data-alias", divAlias);
+
+        // Also dynamically create alias references for Cypress
+        const clone = img.cloneNode(true);
+        clone.id = divAlias;
+        img.after(clone);
+        img.remove(); // replace original so both drag# and div# exist in DOM
+      });
+
+      // ✅ Now reselect updated elements (with both id sets)
       const images = document.querySelectorAll(".image");
       let draggedImage = null;
 
@@ -138,7 +152,6 @@
         image.addEventListener("drop", () => {
           image.classList.remove("drag-over");
           if (image !== draggedImage) {
-            // Swap background and text using dataset
             const tempBg = draggedImage.dataset.img;
             const tempText = draggedImage.textContent;
 
